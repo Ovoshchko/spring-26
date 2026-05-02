@@ -60,8 +60,15 @@ class DecisionTree:
         if m < self.min_samples_split:
             return None, None
 
-        if self.max_features and self.max_features < n:
-            node_features = np.random.choice(n, self.max_features, replace=False)
+        if self.max_features == "sqrt":
+            k = int(np.sqrt(n))
+        elif isinstance(self.max_features, int):
+            k = self.max_features
+        else:
+            k = n
+
+        if k < n:
+            node_features = np.random.choice(n, k, replace=False)
         else:
             node_features = np.arange(n)
 

@@ -17,13 +17,6 @@ class RandomForest:
         self.oob_indices = []
         self.accepted_trees_count = 0
 
-    def _get_max_features(self, n_features):
-        if self.max_features == "sqrt":
-            return int(np.sqrt(n_features))
-        elif isinstance(self.max_features, int):
-            return self.max_features
-        else:
-            return n_features
 
     def fit(self, X, y):
         self.trees = []
@@ -40,12 +33,11 @@ class RandomForest:
             X_sample = X[indices]
             y_sample = y[indices]
 
-            max_features = self._get_max_features(n_features)
 
             tree = DecisionTree(
                 max_depth=self.max_depth,
                 min_samples_split=self.min_samples_split,
-                max_features=max_features
+                max_features=self.max_features
             )
 
             tree.fit(X_sample, y_sample)
