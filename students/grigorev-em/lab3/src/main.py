@@ -19,13 +19,7 @@ accuracy_score(y_pred=GradientBoostingClassifier(max_depth=10, n_estimators=50).
 
 kf = KFold(n_splits=5, shuffle=True, random_state=42, )
 
-clf = GradientBoosting(
-    n_estimators=500,
-    learning_rate=0.1,
-    max_depth=3,
-    min_samples_leaf=5,
-    subsample=0.8,
-)
+clf = GradientBoosting(max_depth=10, n_estimators=50)
 
 cv_res = cross_validate(clf, x_train, y_train, cv=kf, scoring=['accuracy'], n_jobs=-1)
 
@@ -35,13 +29,7 @@ cv_res[f"test_accuracy"].mean()
 
 kf = KFold(n_splits=5, shuffle=True, random_state=42, )
 
-clf = GradientBoostingClassifier(
-    n_estimators=500,
-    learning_rate=0.1,
-    max_depth=3,
-    min_samples_leaf=5,
-    subsample=0.8,
-)
+clf = GradientBoostingClassifier(max_depth=10, n_estimators=50)
 
 cv_res = cross_validate(clf, x_train, y_train, cv=kf, scoring=['accuracy'], n_jobs=-1)
 
